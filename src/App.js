@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar'
 import Dashboard from './components/dashboard/Dashboard'
 import GameDetails from './components/games/GameDetails'
 import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path='/' component={Dashboard}/>
             <Route path='/game/:id' component={GameDetails}/>
             <Route path='/signin' component={SignIn}/>
+            <Route path='/signup' component={SignUp}/>
             
           </Switch>          
         </div>
