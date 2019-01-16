@@ -11,4 +11,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+
+}
+
+.game-list .row{
+  margin-bottom: 0px;
+}
+.game-list .card .card-content{
+  padding: 0px;
+}
+
+.game-list h3{
+  margin: 0 0 0 0;
+}
+
+h6 {
+  margin: 0 0 0 0;
 }

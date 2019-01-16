@@ -8,6 +8,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar></Navbar>
+
           <Switch>
             <Route path='/' component={Dashboard}/>
           </Switch>          
