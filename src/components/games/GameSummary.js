@@ -16,7 +16,7 @@ const GameSummary = ()=>{
                             <h6 className="col s5 m3 center-align">김순태</h6>   
                         </div>
                     </div>        
-                    <p className='grey-text center-align'>2019년 1월 17일, AM7</p>
+                    <p className='grey-text center-align'>2019년 1월 17일, 7:56 AM</p>
                 </div>
         </div>
     )
