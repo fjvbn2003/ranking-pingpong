@@ -1,4 +1,5 @@
 import React from 'react'
+import './GameList.css';
 
 const GameSummary = ()=>{
     return(
