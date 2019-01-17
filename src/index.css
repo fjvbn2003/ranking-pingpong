@@ -14,3 +14,11 @@ code {
 
 }
 
+.row{
+  margin-bottom: 0px;
+}
+
+select{
+  font-size: 25px;
+  text-align-last:center;
+}
