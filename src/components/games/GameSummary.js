@@ -17,7 +17,7 @@ const GameSummary = ({game})=>{
                             <h6 className="col s5 m3 center-align">{game.p2_name}</h6>   
                         </div>
                     </div>        
-                    <p className='grey-text center-align'>2019년 1월 17일, 7:56 AM</p>
+                    <p className='grey-text center-align'>{game.createdAt.toString()}</p>
                 </div>
         </div>
     )

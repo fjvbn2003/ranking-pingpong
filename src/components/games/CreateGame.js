@@ -57,7 +57,7 @@ class CreateGame extends Component {
                             <h6 className="col s2 m2 "></h6>
                             <div className="input-field col s5 m5 center-align">
                                 <label htmlFor="p2_name">player2</label>
-                                <input type="text" id="p2_name" onChange={this.handleChange}/>
+                             <input type="text" id="p2_name" onChange={this.handleChange}/>
                             </div>
                         </div>
                         <div className="input-field center-align">
