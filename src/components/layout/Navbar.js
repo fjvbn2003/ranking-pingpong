@@ -9,9 +9,9 @@ const Navbar = () =>{
         <nav className="nav wrapper blue darken-4">
             <div className="container">
                 <Link to='/' className="brand-logo left">랭킹핑퐁</Link>
-                {/* <SignedInLinks/> */}
-                <SignedOutLinks/>
                 <SignedInLinks/>
+                {/* <SignedOutLinks/> */}
+
                 
             </div>
         </nav>
