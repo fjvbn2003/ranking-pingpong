@@ -23,13 +23,18 @@ const store = createStore(rootReducer,
         applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
         // config file을 넣어주어서 actionCreator가 firebase와 저장소에 접근할 수 있도록 한다.
         reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
+        // firebase가 인증을 완료했을 때 attach를 하여 렌더링을 하기 위해서 . attachAuthIsReady : ture 옵션을 넘겨준다. 
+        reactReduxFirebase(fbConfig,{attachAuthIsReady:true})
         )
     );
 
-ReactDOM.render(<Provider store={store}><App /></Provider> , document.getElementById('root'));
+// Don't render to the DOM until firebase is ready
+store.firebaseAuthIsReady.then(()=>{
+    ReactDOM.render(<Provider store={store}><App /></Provider> , document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    // If you want your app to work offline and load faster, you can change
+    // unregister() to register() below. Note this comes with some pitfalls.
+    // Learn more about service workers: http://bit.ly/CRA-PWA
+    serviceWorker.unregister();
+    
+}); 
