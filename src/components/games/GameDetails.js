@@ -2,9 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+import {Redirect} from 'react-router-dom'
+
 const GameDetails = (props) =>{
 
-    const {game} = props;
+    const {game,auth} = props;
+    if(!auth.uid) return <Redirect to='/signin'/>
+
     if(game){
         return (
             <div className="container section game-details">
@@ -32,7 +36,6 @@ const GameDetails = (props) =>{
             </div>
         )
     }else{
-
         return(
             <div className="container center">
                 <p>Loading project...</p>
@@ -48,7 +51,9 @@ const mapStateToProps = (state, ownProps) =>{
     const games = state.firestore.data.games;
     const game = games? games[id] : null;
     return{
-        game: game
+        game: game,
+        auth: state.firebase.auth
+
     }
 }
 export default compose(

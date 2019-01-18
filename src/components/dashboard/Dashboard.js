@@ -6,16 +6,17 @@ import GameList from '../games/GameList'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-
+import {Redirect} from 'react-router-dom'
 // 데이터를 가져오려면 Async(비동기적 방식)으로 데이터베이스에 접근해야한다. 그렇게 하기 위해서는 컴포넌트의 생명주기를 적절히 이용하여 네트워크로 인한 데이터 로딩시간을 적절하게 줄일 필요가 있다.
 
 
 class Dashboard extends  Component {
     render(){
-        //console.log(this.props);
-        // games 객체를 가져온다..
 
-        const {games} = this.props;
+        const {games, auth} = this.props;
+        // route guarding
+        if(!auth.uid) return <Redirect to='/signin'/>
+
         return(
         <div className="dashboard container">
             <div className="row">
@@ -36,7 +37,8 @@ const mapStateToProps = (state) =>{
     //console.log(state); state객체에는 redux에 등록된 reducer들과 그 상태가 들어있음.
 
     return{
-        games: state.firestore.ordered.games
+        games: state.firestore.ordered.games,
+        auth: state.firebase.auth
     }
 }
 

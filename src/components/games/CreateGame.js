@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {createGame} from '../../store/actions/gameActions'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
 class CreateGame extends Component {
 
     state={
@@ -25,6 +27,10 @@ class CreateGame extends Component {
     }
 
     render(){
+        // Route Gaurding
+        const {auth} = this.props;
+        if(!auth.uid) return <Redirect to='/signin'/>
+
         return(
             <div className="container create-game">
                 <h3 className='center-align'>경기 기록</h3>
@@ -69,10 +75,17 @@ class CreateGame extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) =>{
+    return{
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch)=>{
     return{
         createGame: (game)=> dispatch(createGame(game))
     }
 }
 
-export default connect(null,mapDispatchToProps)(CreateGame);
+export default connect(mapStateToProps,mapDispatchToProps)(CreateGame);
