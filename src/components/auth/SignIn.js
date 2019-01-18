@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import {connect} from 'react-redux'
+import {signIn} from '../../store/actions/authActions'
 class SignIn extends Component {
 
     state={
@@ -14,10 +15,13 @@ class SignIn extends Component {
     }
     handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(this.state);
+        this.props.signIn(this.state)
     }
 
     render(){
+        const {authError} = this.props;
+        const {authErrorMessage} = this.props;
+        
         return(
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -33,11 +37,27 @@ class SignIn extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn blue darken-4 z-depth-0">로그인</button>
+                        <div className="red-text center">
+                            {authError ? <p>{authError}</p>:null}
+                        </div>
                     </div>
+
                 </form>
             </div>
         )
     }
 }
+// auth state에 접근하기 위한 코드
+const mapStateToProps = (state) =>{
+    return{
+        authError: state.auth.authError
+    }
+}
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        signIn: (creds)=>dispatch(signIn(creds))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

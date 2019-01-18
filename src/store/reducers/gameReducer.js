@@ -12,11 +12,11 @@ const initState = {
 const gameReducer = (state = initState, action) =>{
     switch(action.type){
         case 'CREATE_GAME':
-            console.log('created game', action.game);
+            //console.log('created game', action.game);
             return state;
 
         case 'CREATE_GAME_ERROR':
-            console.log('create game error', action.err)
+            //console.log('create game error', action.err)
             return state
         default:
             return state;    
