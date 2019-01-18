@@ -17,8 +17,11 @@ import fbConfig from './config/fbConfig'
 
 //create rootReducer, thunk에 extra 데이터로 getFirestore와 getFirebase를 전달
 const store = createStore(rootReducer,
+    //여러개의 enhancer를 묶기위한 compose 함수
     compose(
+        //return enhancer
         applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
+        // config file을 넣어주어서 actionCreator가 firebase와 저장소에 접근할 수 있도록 한다.
         reduxFirestore(fbConfig),
         reactReduxFirebase(fbConfig)
         )
