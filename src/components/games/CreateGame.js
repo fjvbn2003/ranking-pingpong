@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import {createGame} from '../../store/actions/gameActions'
+import {connect} from 'react-redux'
 class CreateGame extends Component {
 
     state={
@@ -19,7 +20,8 @@ class CreateGame extends Component {
     }
     handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(this.state);
+        //console.log(this.state);
+        this.props.createGame(this.state);
     }
 
     render(){
@@ -67,5 +69,10 @@ class CreateGame extends Component {
         )
     }
 }
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        createGame: (game)=> dispatch(createGame(game))
+    }
+}
 
-export default CreateGame;
+export default connect(null,mapDispatchToProps)(CreateGame);
