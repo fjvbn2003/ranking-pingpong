@@ -7,7 +7,7 @@
 }*/
 
 export const createGame = (game) =>{
-    return (dispatch, getState)=>{
+    return (dispatch, getState,{getFirebase, getFirestore})=>{
         //make async call to database
         dispatch({
             type:'CREATE_GAME',

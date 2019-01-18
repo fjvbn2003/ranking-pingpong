@@ -13,4 +13,9 @@ var config = {
     storageBucket: "react-rankpong.appspot.com",
     messagingSenderId: "271586261523"
   };
+
+  
   firebase.initializeApp(config);
+  firebase.firestore().settings({timestampsInSnapshots:true});
+
+  export default firebase;
