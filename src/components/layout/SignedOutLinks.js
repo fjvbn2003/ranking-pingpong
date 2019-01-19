@@ -11,8 +11,6 @@ const SignedOutLinks = () =>{
 
             </ul>
             <ul id="nav-mobile" className="right hide-on-med-and-up">
-                <li><NavLink to='/create'><i className="material-icons">add</i></NavLink></li>
-
                 <li><NavLink to='/'><i className="material-icons">dashboard</i></NavLink></li>
                 <li><NavLink to='/'><i className="material-icons">view_list</i></NavLink></li>
                 <li><NavLink to='/signin'>로그인</NavLink></li>

@@ -16,7 +16,8 @@ const GameSummary = ({game})=>{
                             <h6 className="col s2 m0 "></h6>
                             <h6 className="col s5 m3 center-align">{game.p2_name}</h6>   
                         </div>
-                    </div>        
+                    </div>    
+                    <p>{game.referee_name}에 의해 생성됨</p>
                     <p className='grey-text center-align'>{game.createdAt.toString()}</p>
                 </div>
         </div>

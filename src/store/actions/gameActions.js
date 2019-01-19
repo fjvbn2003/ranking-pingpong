@@ -12,11 +12,14 @@ export const createGame = (game) =>{
     return (dispatch, getState,{getFirebase, getFirestore})=>{
         //make async call to database
         const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const referee_id = getState().firebase.auth.uid;
         //async task
         firestore.collection('games').add({
             ...game,
             whowin: false,
-            referee_id: 'fjvbn2003',
+            referee_id: referee_id,
+            referee_name: profile.name,
             p1_id : game.p1_name,
             p2_id : game.p2_name,
             createdAt: new Date(), 

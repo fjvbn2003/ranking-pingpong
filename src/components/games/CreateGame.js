@@ -24,6 +24,7 @@ class CreateGame extends Component {
         e.preventDefault();
         //console.log(this.state);
         this.props.createGame(this.state);
+        this.props.history.push('/');
     }
 
     render(){

@@ -6,7 +6,8 @@ import {Redirect} from 'react-router-dom'
 
 const GameDetails = (props) =>{
 
-    const {game,auth} = props;
+    const {game,auth,id} = props;
+    console.log(game);
     if(!auth.uid) return <Redirect to='/signin'/>
 
     if(game){
@@ -27,9 +28,10 @@ const GameDetails = (props) =>{
                             </div>
                         </div>
                         <div className="card-action grey lighten-4 grey-text">
-                            <div>게임번호: {game.id}</div>
+                            <div>게임번호: {id}</div>
                             <div className='grey-text left-align'>{game.createdAt.toString()}</div>
                             <div>탁구장 위치: {game.location}</div>
+                            <div>심판: {game.referee_name}</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +54,8 @@ const mapStateToProps = (state, ownProps) =>{
     const game = games? games[id] : null;
     return{
         game: game,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        id: id
 
     }
 }
