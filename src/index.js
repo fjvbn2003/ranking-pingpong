@@ -23,8 +23,9 @@ const store = createStore(rootReducer,
         applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
         // config file을 넣어주어서 actionCreator가 firebase와 저장소에 접근할 수 있도록 한다.
         reduxFirestore(fbConfig),
-        // firebase가 인증을 완료했을 때 attach를 하여 렌더링을 하기 위해서 . attachAuthIsReady : ture 옵션을 넘겨준다. 
-        reactReduxFirebase(fbConfig,{attachAuthIsReady:true})
+        // firebase가 인증을 완료했을 때 attach를 하여 렌더링을 하기 위해서 . attachAuthIsReady : ture 옵션을 넘겨준다., firestore에 있는 profile을  firebase에 auth와 sync 한다. userProfile에 profile이 담길 doc이름을 value로 지정한다.
+        // firebase.profile과 firestore.user과 연동을 위한 옵션
+        reactReduxFirebase(fbConfig,{useFirestoreForProfile:true, userProfile:'users', attachAuthIsReady:true})
         )
     );
 

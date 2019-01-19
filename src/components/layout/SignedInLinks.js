@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {signOut} from '../../store/actions/authActions'
 
 const SignedInLinks = (props) =>{
+    const {profile} = props;
     return(
         <div>
             <ul id="nav-desktop" className="right hide-on-small-only">
@@ -11,7 +12,7 @@ const SignedInLinks = (props) =>{
                 <li><NavLink to='/'>랭킹</NavLink></li>
                 <li><NavLink to='/'>전적</NavLink></li>
                 <li><a onClick={props.signOut}>로그아웃</a></li>
-                <li><Link to='/profile' className='btn btn-floating blue btn-flat white-text'>YJ</Link></li>
+                <li><Link to='/profile' className='btn btn-floating blue btn-flat white-text'>{profile.initial}</Link></li>
 
                 
             </ul>
@@ -20,7 +21,7 @@ const SignedInLinks = (props) =>{
                 <li><NavLink to='/'><i className="material-icons">view_list</i></NavLink></li>
                 <li><NavLink to='/'><i className="material-icons">assignment</i></NavLink></li>
                 <li><a onClick={props.signOut}><i className="material-icons">logout</i></a></li>
-                <li><Link to='/profile' className='btn btn-floating blue btn-flat white-text'>YJ</Link></li>
+                <li><Link to='/profile' className='btn btn-floating blue btn-flat white-text'>{profile.initial}</Link></li>
 
 
             </ul>
