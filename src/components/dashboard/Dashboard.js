@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom'
 class Dashboard extends  Component {
     render(){
 
-        const {games, auth} = this.props;
+        const {games, auth, notifications} = this.props;
         // route guarding
         if(!auth.uid) return <Redirect to='/signin'/>
 
@@ -24,7 +24,7 @@ class Dashboard extends  Component {
                     <GameList games={games}/>
                 </div>
                 <div className="col s12 m5 offset-m1">
-                    <Notifications/>
+                    <Notifications notifications={notifications}/>
                 </div>
             </div>
         </div>
@@ -38,7 +38,8 @@ const mapStateToProps = (state) =>{
 
     return{
         games: state.firestore.ordered.games,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        notifications: state.firestore.ordered.notifications,
     }
 }
 
@@ -47,6 +48,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
-        { collection: 'games'}
+        { collection: 'games',orderBy:['createdAt','desc']},
+        {collection: 'notifications', limit:5, orderBy:['time','desc']}
     ])
 )(Dashboard);
