@@ -1,5 +1,6 @@
 import React from 'react'
 import './GameList.css';
+import moment from 'moment'
 
 const GameSummary = ({game})=>{
     return(
@@ -17,8 +18,8 @@ const GameSummary = ({game})=>{
                             <h6 className="col s5 m3 center-align">{game.p2_name}</h6>   
                         </div>
                     </div>    
-                    <p>{game.referee_name}에 의해 생성됨</p>
-                    <p className='grey-text center-align'>{game.createdAt.toString()}</p>
+                    <p className="center-align">{game.referee_name}에 의해 생성됨</p>
+                    <p className='grey-text center-align'>{moment(game.createdAt.toDate()).calendar()}</p>
                 </div>
         </div>
     )

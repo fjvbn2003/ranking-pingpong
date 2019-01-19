@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
-
+import moment from 'moment'
 const GameDetails = (props) =>{
 
     const {game,auth,id} = props;
@@ -32,6 +32,7 @@ const GameDetails = (props) =>{
                             <div className='grey-text left-align'>{game.createdAt.toString()}</div>
                             <div>탁구장 위치: {game.location}</div>
                             <div>심판: {game.referee_name}</div>
+                            <div>{moment(game.createdAt.toDate()).calendar()}에 생성됨</div>
                         </div>
                     </div>
                 </div>
