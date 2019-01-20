@@ -2,8 +2,35 @@ import React, {Component} from 'react'
 import {createGame} from '../../store/actions/gameActions'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import {firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
+import AsyncSelect from 'react-select/lib/Async';
+
+const   options=[
+]
+
+const loadOptions1 = (inputValue, callback) => {
+    setTimeout(() => {
+        callback(filterNames(inputValue));
+    }, 1000);
+    console.log("loadOption1 is called");
+  };
+  const loadOptions2 = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterNames(inputValue));
+    }, 1000);
+    console.log("loadOption2 is called");
+  };
+
+  const filterNames = (inputValue) => {
+    return options.filter(i =>
+      i.label.includes(inputValue)
+    );
+  };
+  
 
 class CreateGame extends Component {
+
 
     state={
         p1_name:'',
@@ -13,25 +40,58 @@ class CreateGame extends Component {
         referee:'',
         date:'',
         location:'',
-
+        selectedOption1: null,
+        selectedOption2: null,
+        inputValue: '',
     }
+
+
     handleChange = (e) =>{
         this.setState({
             [e.target.id]: e.target.value
-        })
+        });
+        console.log(this.state);
     }
-    handleSubmit = (e) =>{
+    handleChange1 = (selectedOption) => {
+        this.setState({ p1_name: selectedOption.value });
+    }
+    handleChange2 = (selectedOption) => {
+        this.setState({ p2_name: selectedOption.value });
+    }
+     handleSubmit = (e) =>{
         e.preventDefault();
         //console.log(this.state);
         this.props.createGame(this.state);
         this.props.history.push('/');
     }
 
+
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps);
+        const {users} = nextProps;
+        if(users != null){
+            users.forEach(element => {
+                options.push({value: element.name, label: element.name})
+            });
+        }
+        console.log(options);
+    }
+    handleInputChange1 = (newValue) => {
+        this.setState({ inputValue: newValue });
+        return newValue;
+      };
+      handleInputChange2 = (newValue) => {
+        this.setState({ inputValue: newValue });
+        return newValue;
+      };
+    
     render(){
         // Route Gaurding
         const {auth} = this.props;
-        if(!auth.uid) return <Redirect to='/signin'/>
+        const { selectedOption1,selectedOption2 } = this.state;
 
+
+        if(!auth.uid) return <Redirect to='/signin'/>
         return(
             <div className="container create-game">
                 <h3 className='center-align'>경기 기록</h3>
@@ -59,12 +119,27 @@ class CreateGame extends Component {
                         <div className="row center-align">
                             <div className="input-field col s5 m5 center-align">
                                 <label htmlFor="p1_name">player1</label>
-                                <input type="text" id="p1_name" onChange={this.handleChange}/>
+                                <AsyncSelect
+                                    loadOptions={loadOptions1}
+                                    defaultOptions
+                                    cacheOptions
+                                    onInputChange={this.handleInputChange1}
+                                    onChange={this.handleChange1}
+                                    isSearchable
+
+                                />
                             </div>
                             <h6 className="col s2 m2 "></h6>
                             <div className="input-field col s5 m5 center-align">
                                 <label htmlFor="p2_name">player2</label>
-                             <input type="text" id="p2_name" onChange={this.handleChange}/>
+                                <AsyncSelect
+                                    loadOptions={loadOptions2}
+                                    cacheOptions
+                                    defaultOptions
+                                    onInputChange={this.handleInputChange2}
+                                    onChange={this.handleChange2}
+                                    isSearchable
+                                />
                             </div>
                         </div>
                         <div className="input-field center-align">
@@ -79,7 +154,8 @@ class CreateGame extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        users: state.firestore.ordered.users,
     }
 }
 
@@ -89,4 +165,10 @@ const mapDispatchToProps = (dispatch)=>{
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateGame);
+export default compose(
+    connect(mapStateToProps,mapDispatchToProps),
+    firestoreConnect([
+        // 어떤 collection을 연결할지 설정        
+        { collection: 'users',orderBy:['name','desc']},
+    ])
+)(CreateGame);
