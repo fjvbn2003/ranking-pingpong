@@ -4,7 +4,7 @@ import moment from 'moment'
 
 const GameSummary = ({game})=>{
     return(
-        <div className="card z-depth-0 game-summary">
+        <div className="card  game-summary">
                 <div className="card-content grey-text text-darken-3">
                     <div className="card-title">
                         <div className="row center-align">

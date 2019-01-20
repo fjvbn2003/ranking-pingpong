@@ -6,6 +6,7 @@ import GameDetails from './components/games/GameDetails'
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateGame from './components/games/CreateGame';
+import Histroy from './components/history/History'
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
             <Route path='/signin' component={SignIn}/>
             <Route path='/signup' component={SignUp}/>
             <Route path='/create' component={CreateGame}/>
-
+            <Route path='/history' component={Histroy}/>
+            
           </Switch>          
         </div>
       </BrowserRouter>

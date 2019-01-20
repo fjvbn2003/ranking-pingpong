@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signIn} from '../../store/actions/authActions'
 import {Redirect} from 'react-router-dom'
-
+import './SignIn.css'
 class SignIn extends Component {
 
     state={
@@ -26,24 +26,34 @@ class SignIn extends Component {
         //console.log(authErrorMessage);
 
         return(
-            <div className="container">
-                <form onSubmit={this.handleSubmit} className="white">
-                    <h5 className="grey-text text-darken-3">로그인</h5>
-                    <h3></h3>
-                    <div className="input-field">
-                        <label htmlFor="email">이메일</label>
-                        <input type="email" id="email" onChange={this.handleChange}/>
+            <div className="signin container">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+                        <h5 className="grey-text text-darken-3 col s12">로그인</h5>
                     </div>
-                    <div className="input-field">
-                        <label htmlFor="password">패스워드</label>
-                        <input type="password" id="password" onChange={this.handleChange}/>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <label htmlFor="email">이메일</label>
+                            <input type="email" id="email" onChange={this.handleChange}/>
+                        </div>
                     </div>
-                    <div className="input-field">
-                        <button className="btn blue darken-4 z-depth-0">로그인</button>
-                        <div className="red-text center">
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <label htmlFor="password">패스워드</label>
+                            <input type="password" id="password" onChange={this.handleChange}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <button className="btn red lighten-3">로그인</button>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="red-text right col s12">
                             {authError ? <p>{authError}</p>:null}
                         </div>
                     </div>
+                        
 
                 </form>
             </div>
