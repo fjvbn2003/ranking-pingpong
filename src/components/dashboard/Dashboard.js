@@ -51,7 +51,6 @@ export default compose(
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
         {collection: 'notifications', limit:5, orderBy:['time','desc']},
-        {collection: 'users', orderBy:['rating']},
-        
+        {collection: 'users', orderBy:['rating','desc']},
     ])
 )(Dashboard);

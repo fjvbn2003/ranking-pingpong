@@ -33,7 +33,6 @@ const loadOptions1 = (inputValue, callback) => {
 
 class CreateGame extends Component {
 
-
     state={
         p1_name:'',
         p1_score:0,
@@ -47,6 +46,7 @@ class CreateGame extends Component {
         selectedOption1: null,
         selectedOption2: null,
         inputValue: '',
+        users:[],
     }
 
 
@@ -71,16 +71,16 @@ class CreateGame extends Component {
     }
 
 
-    componentWillReceiveProps(nextProps){
-        console.log(nextProps);
-        const {users} = nextProps;
-        if(users != null && props_flag){
-            users.forEach(element => {
-                options.push({value: element.id, label: element.name})
-            });
-            props_flag = false;
-        }
-    }
+    // componentWillReceiveProps(nextProps){
+    //     console.log(nextProps);
+    //     const {users} = nextProps;
+    //     if(users != null && props_flag){
+    //         users.forEach(element => {
+    //             options.push({value: element.id, label: element.name})
+    //         });
+    //         props_flag = false;
+    //     }
+    // }
     handleInputChange1 = (newValue) => {
         this.setState({ inputValue: newValue });
         return newValue;
@@ -90,10 +90,18 @@ class CreateGame extends Component {
         return newValue;
       };
     
+
     render(){
         // Route Gaurding
-        const {auth} = this.props;
-        const { selectedOption1,selectedOption2 } = this.state;
+        const {auth,users} = this.props;
+        if(users != null){
+            while (options.length > 0) {
+                options.pop();
+            } 
+            users.forEach(element => {
+                options.push({value: element.id, label: element.name})
+            });
+        }
 
 
         if(!auth.uid) return <Redirect to='/signin'/>
