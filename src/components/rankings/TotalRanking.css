@@ -1,0 +1,8 @@
+th, td{
+    background-color: white;
+}
+th, td{
+    padding: 15px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}

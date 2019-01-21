@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
+import TotalRankings from '../rankings/TotalRanking';
 // 데이터를 가져오려면 Async(비동기적 방식)으로 데이터베이스에 접근해야한다. 그렇게 하기 위해서는 컴포넌트의 생명주기를 적절히 이용하여 네트워크로 인한 데이터 로딩시간을 적절하게 줄일 필요가 있다.
 
 
@@ -19,13 +20,14 @@ class Dashboard extends  Component {
 
         return(
         <div className="dashboard container">
+            <h3 className='center-align'>전광판</h3>
             <div className="row">
+                <div className="col s12 m6">
+                    <TotalRankings/>
+                </div> 
                 <div className="col s12 m5 offset-m1">
                     <Notifications notifications={notifications}/>
                 </div>
-                {/* <div className="col s12 m6">
-                    <GameList games={games}/>
-                </div> */}
             </div>
         </div>
         )}
