@@ -2,7 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './TotalRanking.css'
 // Dashboard에서 전달된 rankings 데이터를 받아온다.
-const TotalRankings = () =>{
+const TotalRankings = (props) =>{
+    const {users} = props;
+    console.log(users);
     return(
         <table className="highlight centered">
             <thead>
@@ -16,30 +18,16 @@ const TotalRankings = () =>{
             </thead>
 
             <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>김영주</td>
-                    <td>한국항공대</td>
-                    <td>2500</td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>김영주</td>
-                    <td>한국항공대</td>
-                    <td>2500</td>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <td>김영주</td>
-                    <td>한국항공대</td>
-                    <td>2500</td>
-                </tr>
-                <tr>
-                    <th>4</th>
-                    <td>김영주</td>
-                    <td>한국항공대</td>
-                    <td>2500</td>
-                </tr>
+                {users && users.map((item, index) =>{
+                    return(
+                    <tr key={item.id}>
+                        <th>{index+1}</th>
+                        <td>{item.name}</td>
+                        <td>{item.club}</td>
+                        <td>{item.rating}</td>
+                    </tr>
+                    )
+                })}
 
             </tbody>
       </table>

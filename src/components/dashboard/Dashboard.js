@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Notifications from './Notifications'
-import GameList from '../games/GameList'
 // app.js에 store객체로 저장된 store리덕스에 접근하기 위해서 필요한 connect 함수
 // Dashboard에서 데이터에 접근해서 gameList에 뿌려줘야 한다. 왜냐하면 list를 뿌려주는 것은 클래스 컴포넌트가 아니고 함수형이기 때문이다. 복잡한건 클래스 컴포넌트에서 모두 해야한다.
 import {connect} from 'react-redux'
@@ -14,7 +13,7 @@ import TotalRankings from '../rankings/TotalRanking';
 class Dashboard extends  Component {
     render(){
 
-        const { auth, notifications} = this.props;
+        const { auth, notifications,users} = this.props;
         // route guarding
         //if(!auth.uid) return <Redirect to='/signin'/>
 
@@ -23,7 +22,7 @@ class Dashboard extends  Component {
             <h3 className='center-align'>전광판</h3>
             <div className="row">
                 <div className="col s12 m6">
-                    <TotalRankings/>
+                    <TotalRankings users={users}/>
                 </div> 
                 <div className="col s12 m5 offset-m1">
                     <Notifications notifications={notifications}/>
@@ -41,6 +40,8 @@ const mapStateToProps = (state) =>{
     return{
         auth: state.firebase.auth,
         notifications: state.firestore.ordered.notifications,
+        users: state.firestore.ordered.users,
+        
     }
 }
 
@@ -49,6 +50,8 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
-        {collection: 'notifications', limit:5, orderBy:['time','desc']}
+        {collection: 'notifications', limit:5, orderBy:['time','desc']},
+        {collection: 'users', orderBy:['rating']},
+        
     ])
 )(Dashboard);
