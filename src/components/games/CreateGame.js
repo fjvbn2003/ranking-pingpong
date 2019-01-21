@@ -5,9 +5,11 @@ import {Redirect} from 'react-router-dom'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import AsyncSelect from 'react-select/lib/Async';
+import './CreateGame.css'
 
-const   options=[
-]
+var props_flag = true;
+var   options=[
+];
 
 const loadOptions1 = (inputValue, callback) => {
     setTimeout(() => {
@@ -35,8 +37,10 @@ class CreateGame extends Component {
     state={
         p1_name:'',
         p1_score:0,
+        p1_id:'',
         p2_name:'',
         p2_score:0,
+        p2_id:'',
         referee:'',
         date:'',
         location:'',
@@ -50,17 +54,18 @@ class CreateGame extends Component {
         this.setState({
             [e.target.id]: e.target.value
         });
-        console.log(this.state);
+        console.log("submit",this.state);
     }
     handleChange1 = (selectedOption) => {
-        this.setState({ p1_name: selectedOption.value });
+        console.log(selectedOption);
+        this.setState({ p1_name: selectedOption.label, p1_id: selectedOption.value });
     }
     handleChange2 = (selectedOption) => {
-        this.setState({ p2_name: selectedOption.value });
+        this.setState({ p2_name: selectedOption.label, p2_id: selectedOption.value });
     }
      handleSubmit = (e) =>{
         e.preventDefault();
-        //console.log(this.state);
+        console.log(this.state);
         this.props.createGame(this.state);
         this.props.history.push('/');
     }
@@ -69,12 +74,12 @@ class CreateGame extends Component {
     componentWillReceiveProps(nextProps){
         console.log(nextProps);
         const {users} = nextProps;
-        if(users != null){
+        if(users != null && props_flag){
             users.forEach(element => {
-                options.push({value: element.name, label: element.name})
+                options.push({value: element.id, label: element.name})
             });
+            props_flag = false;
         }
-        console.log(options);
     }
     handleInputChange1 = (newValue) => {
         this.setState({ inputValue: newValue });
@@ -142,9 +147,12 @@ class CreateGame extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="input-field center-align">
-                            <button className="btn blue darken-4 z-depth-0">확인</button>
+                        <div className="row">
+                        <div className="input-field center-align col s12">
+                            <button className="btn red lighten-3">확인</button>
                         </div>
+                        </div>
+                        
                 </form>
  
             </div>

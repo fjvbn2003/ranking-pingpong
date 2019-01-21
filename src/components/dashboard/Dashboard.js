@@ -13,9 +13,9 @@ import {Redirect} from 'react-router-dom'
 class Dashboard extends  Component {
     render(){
 
-        const {games, auth, notifications} = this.props;
+        const { auth, notifications} = this.props;
         // route guarding
-        if(!auth.uid) return <Redirect to='/signin'/>
+        //if(!auth.uid) return <Redirect to='/signin'/>
 
         return(
         <div className="dashboard container">
@@ -37,7 +37,6 @@ const mapStateToProps = (state) =>{
     //console.log(state); state객체에는 redux에 등록된 reducer들과 그 상태가 들어있음.
 
     return{
-        games: state.firestore.ordered.games,
         auth: state.firebase.auth,
         notifications: state.firestore.ordered.notifications,
     }
@@ -48,7 +47,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
-        { collection: 'games',orderBy:['createdAt','desc']},
         {collection: 'notifications', limit:5, orderBy:['time','desc']}
     ])
 )(Dashboard);

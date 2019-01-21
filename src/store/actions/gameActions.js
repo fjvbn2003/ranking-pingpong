@@ -20,8 +20,8 @@ export const createGame = (game) =>{
             whowin: false,
             referee_id: referee_id,
             referee_name: profile.name,
-            p1_id : game.p1_name,
-            p2_id : game.p2_name,
+            p1_id : game.p1_id,
+            p2_id : game.p2_id,
             createdAt: new Date(), 
         }).then(() =>{
             dispatch({ type:'CREATE_GAME',game,});

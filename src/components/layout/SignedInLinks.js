@@ -2,6 +2,7 @@ import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signOut} from '../../store/actions/authActions'
+import './SignedInLinks.css'
 
 const SignedInLinks = (props) =>{
     const {profile} = props;
@@ -12,7 +13,7 @@ const SignedInLinks = (props) =>{
                 <li><NavLink to='/'>전광판</NavLink></li>
                 <li><NavLink to='/history'>전적</NavLink></li>
                 <li><a onClick={props.signOut}>로그아웃</a></li>
-                <li><Link to='/profile' className='btn btn-floating blue btn-flat white-text'>{profile.initial}</Link></li>
+                <li><Link to='/profile' className='btn btn-floating red  lighten-3 btn-flat white-text'>{profile.initial}</Link></li>
 
                 
             </ul>
