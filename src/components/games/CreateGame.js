@@ -99,7 +99,7 @@ class CreateGame extends Component {
                 options.pop();
             } 
             users.forEach(element => {
-                options.push({value: element.id, label: element.name})
+                options.push({value: element.id, label: `${element.name}(${element.rating})`})
             });
         }
 
@@ -185,6 +185,6 @@ export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
-        { collection: 'users',orderBy:['name','desc']},
+        { collection: 'users',orderBy:['name','asc']},
     ])
 )(CreateGame);
