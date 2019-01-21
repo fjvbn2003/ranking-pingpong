@@ -21,8 +21,10 @@ exports.gameCreated = functions.firestore
         const game = doc.data();
         const notification={
             content: '새로운 경기가 등록되었습니다',
-            result: `(${game.p1_name}) ${game.p1_score}:${game.p2_score} (${game.p2_name})`,
+            result: `${game.p1_name} ${game.p1_score}:${game.p2_score} ${game.p2_name}`,
             time: admin.firestore.FieldValue.serverTimestamp(),
+            game_id: doc.id,
+            type:'new_game',
         }
         return createNotification(notification);
     });
@@ -36,6 +38,8 @@ exports.userJoined = functions.auth.user()
                     content: '새로운 선수가 랭퐁에 참가하였습니다',
                     result: `이름: ${newUser.name} , 부수: ${newUser.level} , 구장:${newUser.location}`,
                     time: admin.firestore.FieldValue.serverTimestamp(),
+                    user_id: user.uid,
+                    type: 'new_user',
                 }
                 return createNotification(notification);
             })

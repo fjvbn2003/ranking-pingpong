@@ -7,6 +7,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateGame from './components/games/CreateGame';
 import Histroy from './components/history/History'
+import Profile from './components/profile/Profile';
 
 class App extends Component {
   render() {
@@ -14,7 +15,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar></Navbar>
-
           <Switch>
             <Route exact path='/' component={Dashboard}/>
             <Route path='/game/:id' component={GameDetails}/>
@@ -22,7 +22,7 @@ class App extends Component {
             <Route path='/signup' component={SignUp}/>
             <Route path='/create' component={CreateGame}/>
             <Route path='/history/:id' component={Histroy}/>
-            
+            <Route path='/profile' component={Profile}/>  
           </Switch>          
         </div>
       </BrowserRouter>

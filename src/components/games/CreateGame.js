@@ -157,7 +157,7 @@ class CreateGame extends Component {
                         </div>
                         <div className="row">
                         <div className="input-field center-align col s12">
-                            <button className="btn red lighten-3">확인</button>
+                            <button className="btn blue darken-2">확인</button>
                         </div>
                         </div>
                         

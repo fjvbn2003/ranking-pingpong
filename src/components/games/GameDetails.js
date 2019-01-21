@@ -29,7 +29,6 @@ const GameDetails = (props) =>{
                         </div>
                         <div className="card-action grey lighten-4 grey-text">
                             <div>게임번호: {id}</div>
-                            <div className='grey-text left-align'>{game.createdAt.toString()}</div>
                             <div>탁구장 위치: {game.location}</div>
                             <div>심판: {game.referee_name}</div>
                             <div>{moment(game.createdAt.toDate()).calendar()}에 생성됨</div>

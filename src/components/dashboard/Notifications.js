@@ -1,5 +1,7 @@
 import React from 'react'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
+
 const Notifications = (props) =>{
     const {notifications} = props;
     return (
@@ -9,15 +11,39 @@ const Notifications = (props) =>{
                     <span className="card-title">Notifications</span>
                     <ul className="notifications">
                         {notifications && notifications.map( item =>{
-                            return(
-                                <li key={item.id}>
-                                    <p className="pink-text">{item.content}</p>
-                                    <p>{item.result}</p>
-                                    <div className="grey-text note-date">
-                                        {moment(item.time.toDate()).fromNow()}
-                                    </div>
-                                </li>
-                            )
+                            //notification type
+                            //new user
+                            if(item.type == 'new_game'){
+                                
+                                return(
+                                <Link to={'/game/'+item.game_id}  key={item.id}>
+                                    <li>
+                                        <p className="pink-text">{item.content}</p>
+                                        <p>{item.result}</p>
+                                        <div className="grey-text note-date">
+                                            {moment(item.time.toDate()).fromNow()}
+                                        </div>
+                                    </li>
+                                </Link>
+                                )
+                            }else if(item.type == 'new_user'){
+                                return(
+                                <Link to={'/history/'+item.user_id}  key={item.id}>
+                                    <li>
+                                        <p className="pink-text">{item.content}</p>
+                                        <p>{item.result}</p>
+                                        <div className="grey-text note-date">
+                                            {moment(item.time.toDate()).fromNow()}
+                                        </div>
+                                    </li>
+                                </Link>
+                                )
+                            }
+                            //지정된 타입이 아닐 때
+                            else{
+
+                            }
+
                         })}
 
                     </ul>
