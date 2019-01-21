@@ -4,7 +4,7 @@ import './TotalRanking.css'
 // Dashboard에서 전달된 rankings 데이터를 받아온다.
 const TotalRankings = (props) =>{
     const {users} = props;
-    console.log(users);
+    //console.log(users);
     return(
         <table className="highlight centered">
             <thead>
@@ -20,12 +20,13 @@ const TotalRankings = (props) =>{
             <tbody>
                 {users && users.map((item, index) =>{
                     return(
-                    <tr key={item.id}>
-                        <th>{index+1}</th>
-                        <td>{item.name}</td>
-                        <td>{item.club}</td>
-                        <td>{item.rating}</td>
-                    </tr>
+                        <tr key={item.id}>
+                            <th>{index+1}</th>
+                                <td>
+                                <Link to={'/history/'+item.id}>{item.name}</Link></td>
+                            <td>{item.club}</td>
+                            <td>{item.rating}</td>
+                        </tr>
                     )
                 })}
 

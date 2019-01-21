@@ -12,25 +12,39 @@ import {Redirect} from 'react-router-dom'
 class History extends  Component {
     render(){
 
-        const {games, auth} = this.props;
+        const {auth} = this.props;
         // route guarding
         if(!auth.uid) return <Redirect to='/signin'/>
+        var {user_id, games} = this.props;
+        console.log(games);
+        console.log(user_id);
+        if(user_id == undefined){
+            user_id = auth.uid;
+        }
+        
+        if(games != undefined){
+            var new_games = games.filter( item =>{
+                    return (item.p1_id == user_id || item.p2_id == user_id);
+                });
+        }
+        
 
         return(
         <div className="history container">
-            <GameList games={games}/>
+            <GameList games={new_games}/>
         </div>
         )}
 
 }
 // store 리덕스에 접근해서 이를 Dashboard에 props로 넘겨주기위해 connect의 인자로 필요한 함수.(이름도 미리 정해져 있음)
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state,ownProps) =>{
     //여기서 state는 redux의 state이다.
     //console.log(state); state객체에는 redux에 등록된 reducer들과 그 상태가 들어있음.
-
+    const user_id =  ownProps.match.params.id;
     return{
         games: state.firestore.ordered.games,
         auth: state.firebase.auth,
+        user_id: user_id,
     }
 }
 
@@ -39,6 +53,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         // 어떤 collection을 연결할지 설정        
-        { collection: 'games',orderBy:['createdAt','desc']},
+        { collection: 'games',
+        orderBy:['createdAt','desc']},
     ])
 )(History);
