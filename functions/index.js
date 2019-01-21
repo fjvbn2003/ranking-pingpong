@@ -36,7 +36,7 @@ exports.userJoined = functions.auth.user()
                 const newUser = doc.data();
                 const notification={
                     content: '새로운 선수가 랭퐁에 참가하였습니다',
-                    result: `이름: ${newUser.name} , 부수: ${newUser.level} , 구장:${newUser.location}`,
+                    result: `이름: ${newUser.name} , 부수: ${newUser.level} , 구장:${newUser.club}`,
                     time: admin.firestore.FieldValue.serverTimestamp(),
                     user_id: user.uid,
                     type: 'new_user',

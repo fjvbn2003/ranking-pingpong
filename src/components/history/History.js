@@ -21,20 +21,33 @@ class History extends  Component {
         if(user_id == undefined){
             user_id = auth.uid;
         }
-        
+        var new_games = [];
         if(games != undefined){
-            var new_games = games.filter( item =>{
+            new_games = games.filter( item =>{
                     return (item.p1_id == user_id || item.p2_id == user_id);
                 });
         }
-        
+        console.log(new_games);
+        if(new_games.length >0){
+            return(
+                <div className="history container">
+                    <GameList games={new_games}/>
+                </div>
+                )
+        }else{
+            return(                
+            <div className="history container">
+                <div className="row">
+                    <div className="red-text center col s12">
+                         <p>경기 정보가 없습니다.</p>
+                    </div>
+                 </div>
+            </div>
+            )
+        }
 
-        return(
-        <div className="history container">
-            <GameList games={new_games}/>
-        </div>
-        )}
-
+ 
+    }
 }
 // store 리덕스에 접근해서 이를 Dashboard에 props로 넘겨주기위해 connect의 인자로 필요한 함수.(이름도 미리 정해져 있음)
 const mapStateToProps = (state,ownProps) =>{
