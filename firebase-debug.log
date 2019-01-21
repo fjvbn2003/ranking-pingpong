@@ -1,0 +1,17 @@
+[debug] [2019-01-21T15:51:25.158Z] ----------------------------------------------------------------------
+[debug] [2019-01-21T15:51:25.161Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\youngju\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-01-21T15:51:25.161Z] CLI Version:   6.3.0
+[debug] [2019-01-21T15:51:25.161Z] Platform:      win32
+[debug] [2019-01-21T15:51:25.161Z] Node Version:  v10.13.0
+[debug] [2019-01-21T15:51:25.168Z] Time:          Tue Jan 22 2019 00:51:25 GMT+0900 (Korean Standard Time)
+[debug] [2019-01-21T15:51:25.168Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-21T15:51:25.188Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-21T15:51:25.190Z] > authorizing via signed-in user
+[debug] [2019-01-21T15:51:25.191Z] [iam] checking project react-rankpong for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-01-21T15:51:25.193Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-01-21T15:51:25.194Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-01-21T15:51:25.923Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T15:51:25.934Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-rankpong:testIamPermissions  
+
