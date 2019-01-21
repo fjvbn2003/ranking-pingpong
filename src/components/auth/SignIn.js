@@ -45,7 +45,7 @@ class SignIn extends Component {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <button className="btn red lighten-3">로그인</button>
+                            <button className="btn blue darken-2">로그인</button>
                         </div>
                     </div>
                     <div className="row">

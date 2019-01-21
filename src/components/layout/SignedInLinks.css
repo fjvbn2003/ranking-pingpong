@@ -2,3 +2,6 @@ nav ul a{
     padding-left: 8px;
     padding-right: 8px;
 }
+nav i.material-icons{
+    color: azure;
+}

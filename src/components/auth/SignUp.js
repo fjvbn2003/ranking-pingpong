@@ -67,7 +67,7 @@ class SignUp extends Component {
                     
                     <div className="row">
                         <div className="input-field">
-                            <button className="btn red lighten-3">회원가입</button>
+                            <button className="btn blue darken-2">회원가입</button>
                         </div>    
                     </div>
                     <div className="row">
