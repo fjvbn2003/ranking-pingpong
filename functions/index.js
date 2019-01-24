@@ -12,9 +12,9 @@ const createNotification = (notification) => {
         .add(notification)
         .then(doc => console.log('notification added', doc));
 };
-const updateUserRating = (winUser, new_rating) =>{
-    return admin.firestore().collection('users').doc(winUser).update({rating: new_rating});
-
+const updateUserRating = (winUser, up_rating, loose_user, down_rating) =>{
+    admin.firestore().collection('users').doc(loose_user).update({rating: down_rating});
+    return admin.firestore().collection('users').doc(winUser).update({rating: up_rating});
 }
 
 
@@ -42,9 +42,40 @@ exports.gameCreated2 = functions.firestore
     .onCreate(doc =>{   
         const game = doc.data();
         const winUser = game.whowin? game.p1_id: game.p2_id;
-        const user_rating = game.whowin? game.p1_rating: game.p2_rating;
+        const looseUser = game.whowin? game.p2_id: game.p1_id;
+        
+        const win_user_rating = game.whowin? game.p1_rating: game.p2_rating;
+        const loose_user_rating = game.whowin? game.p2_rating: game.p1_rating;
+        
         const diff = game.p1_rating - game.p2_rating>0 ? game.p1_rating - game.p2_rating: game.p2_rating - game.p1_rating ;
-        return updateUserRating(winUser, user_rating+diff);
+        let update_val = 0;
+        //p1승리
+        if(game.whowin){
+            //p1이  rating 이 높은 경우
+            if(game.p1_rating > game.p2_rating){
+                update_val = Math.ceil(diff*0.01);
+            }
+            //p2가  rating 이 높은 경우
+            else if(game.p1_rating < game.p2_rating){
+                update_val = Math.ceil(diff*0.03);
+            }
+            else{
+                update_val = 2;
+            }
+        }//p2 승리
+        else{
+            if(game.p1_rating > game.p2_rating){
+                update_val = Math.ceil(diff*0.03);
+            }
+            else if(game.p1_rating < game.p2_rating){
+                update_val = Math.ceil(diff*0.01);
+            }
+            else{
+                update_val = 2;
+            }
+        }
+        
+        return updateUserRating(winUser, win_user_rating+update_val, looseUser, loose_user_rating-update_val);
     });
 
 
