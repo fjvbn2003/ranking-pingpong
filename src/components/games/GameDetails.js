@@ -4,6 +4,8 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
+
 const GameDetails = (props) =>{
 
     const {game,auth,id} = props;
@@ -22,9 +24,13 @@ const GameDetails = (props) =>{
                                 <h3 className="col s5 m5 l5">{game.p2_score}</h3>
                             </div>
                             <div className="row center-align">
-                                <h6 className="col s5 m5 center-align">{game.p1_name}</h6>
+                                <Link to={'/history/'+game.p1_id}>
+                                    <h6 className="col s5 m5 center-align">{game.p1_name}</h6>
+                                </Link>
                                 <h6 className="col s2 m2 "></h6>
-                                <h6 className="col s5 m5 center-align">{game.p2_name}</h6>   
+                                <Link to={'/history/'+game.p2_id}>
+                                    <h6 className="col s5 m5 center-align">{game.p2_name}</h6> 
+                                </Link>  
                             </div>
                         </div>
                         <div className="card-action grey lighten-4 grey-text">

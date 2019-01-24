@@ -18,7 +18,7 @@ const SignedInLinks = (props) =>{
                 
             </ul>
             <ul id="nav-mobile" className="right hide-on-med-and-up">
-                <li><NavLink to='/create'><i className="material-icons">add</i></NavLink></li>
+                <li><NavLink to='/create' ><i className="material-icons">add</i></NavLink></li>
                 <li><NavLink to='/'><i className="material-icons">format_list_numbered</i></NavLink></li>
                 <li><NavLink to='/history'><i className="material-icons">insert_chart_outlined</i></NavLink></li>
                 <li><a onClick={props.signOut}><i className="material-icons">logout</i></a></li>
