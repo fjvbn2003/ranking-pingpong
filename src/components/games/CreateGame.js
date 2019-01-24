@@ -37,9 +37,11 @@ class CreateGame extends Component {
         p1_name:'',
         p1_score:0,
         p1_id:'',
+        p1_rating:0,
         p2_name:'',
         p2_score:0,
         p2_id:'',
+        p2_rating:0,
         referee:'',
         date:'',
         location:'',
@@ -58,10 +60,10 @@ class CreateGame extends Component {
     }
     handleChange1 = (selectedOption) => {
         console.log(selectedOption);
-        this.setState({ p1_name: selectedOption.label, p1_id: selectedOption.value });
+        this.setState({ p1_name: selectedOption.label, p1_id: selectedOption.value, p1_rating: selectedOption.rating });
     }
     handleChange2 = (selectedOption) => {
-        this.setState({ p2_name: selectedOption.label, p2_id: selectedOption.value });
+        this.setState({ p2_name: selectedOption.label, p2_id: selectedOption.value, p2_rating: selectedOption.rating });
     }
      handleSubmit = (e) =>{
         e.preventDefault();
@@ -99,7 +101,7 @@ class CreateGame extends Component {
                 options.pop();
             } 
             users.forEach(element => {
-                options.push({value: element.id, label: `${element.name}(${element.rating})`})
+                options.push({value: element.id, label: `${element.name}(${element.rating})`, rating: element.rating})
             });
         }
 

@@ -39,7 +39,7 @@ export const signUp = (newUser) =>{
                 club: newUser.club,
                 initial: newUser.name[1],
                 email: newUser.email,
-                rating: 6000 - newUser.level*1000
+                rating: 6000 - newUser.level*1000,
             })
         }).then(()=>{
             dispatch({type: 'SIGNUP_SUCCESS'});
