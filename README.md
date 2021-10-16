@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 랭킹핑퐁
 
-## Available Scripts
+랭킹퐁은 탁구인들의 전적을 등록, 검색 기능을 제공하고 레이팅을 산출하여 재밌게 운동을 할 수 있도록 만들어진 웹/앱 어플리케이션입니다
 
-In the project directory, you can run:
+## 사용 기술 스택
+- React(프론트엔드)
+- BootStrap(프론트엔드)
+- node.js(백엔드)
+- FireBase NoSQL 데이터베이스
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 대시보드(전광판)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+현재 랭킹핑퐁에 등록된 주요 선수들 리스트를 표시하는 화면
 
-### `npm test`
+![dashboard](./img/dashboard.png)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 경기 등록
 
-### `npm run build`
+경기를 등록하고 싶을 때 경기 사용자와 함께 스코어를 입력하여 등록합니다. (레이팅은 자동으로 갱신됩니다.)
+ 
+![add_game](./img/add_game.png)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# 개인 경기기록
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+개인 전적을 확인하고 싶을 때 볼 수 있는 화면입니다.
 
-### `npm run eject`
+![personal_history](./img/personal_history.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Notifications
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+경기가 등록되거나, 새로운 유저가 가입되었을 때 발생하는 notification.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![notification](./img/notification.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## 참고사항
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 프론트앤드 서버 실행방법
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+깃헙 클론 후 아래 명령어 입력후 http://localhost:3000  접속.
+```
+  npm start
+```
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ 웹 기반 어플리케이션에, BootStrap으로 CSS를 구성하였기 때문에 모바일과, 데스크탑 환경에서 모두 사용 가능합니다. 어플리케이션 특성상 모바일로 접속하는 유저가 많을 것이라 생각하여 모바일 위주로 만들었습니다.
