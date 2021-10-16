@@ -5,8 +5,7 @@
 ## 사용 기술 스택
 - React(프론트엔드)
 - BootStrap(프론트엔드)
-- node.js(백엔드)
-- FireBase NoSQL 데이터베이스
+- FireBase (백엔드)
 
 
 # 대시보드(전광판)
